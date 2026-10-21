@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가상클래스 선택자</title>
+
+    <style>
+        .d1 a:hover {font-weight: bold;} /* 마우스 오버시*/
+        .d1 li:first-child {color: red;} /* 첫 번째 자식 선택자 */
+        .d1 li:last-child {color: blue;} /* 마지막 자식 선택자 */
+        .d1 li:only-child { color: aqua; } /* 유일한 자식 선택자 */
+        .d1 li:nth-child(2n) {font-size: 20px;} /* n번째 자식 선택자 */
+        .d1 li:nth-last-child(3) {background-color: yellow;} /* 뒤에서부터 n번째 자식 선택자 */
+        .d2 p:first-of-type {background-color: green;} /* 첫 번째 유형 선택자 */ /*같은 p 중 첫 번째*/
+        .d2 p:last-of-type {background-color: skyblue;} /* 마지막 유형 선택자 */ /*같은 p 중 마지막*/
+        .d2 p:nth-of-type(even) {background-color: pink;} /* p 중 ()안 공식 유형 선택자(2n+1) */ /*같은 p 중 짝수*/
+        .d2 a:only-of-type {color: rgb(0, 255, 157);} /* 유일한 유형 선택자 */ /*같은 a 중 유일한 a*/
+        .d1 li:empty {background-color: rgb(209, 224, 143);} /* 비어있는 선택자 */ /* li는 비어있음*/
+        .d2 p:not(.serve1) {font-size:20px;} /* .serve1 클래스를 제외한 p 요소 */
+        .d3 input[required] {font-size: 16px; color: red;} /* 필수 입력 선택자 */
+        .d3 button:hover { background: #f21a45; }
+    </style>
+</head>
+<body>
+    <div class="d1">
+        <a href="#">마우스 오버시</a>
+        <ul>
+            <li>목록 1</li>
+            <li>목록 2</li>
+            <li>목록 3</li>
+            <li>목록 4</li>
+            <li>목록 5</li>
+            <li>목록 6</li>
+            <li></li> <!-- 비어있는 li -->
+            <li>목록 8</li>
+        </ul>
+    </div>
+    <div class="d2"> 
+        <ul>
+            <li>목록 1</li>
+            <li>목록 2</li>
+            <li>목록 3</li>
+        </ul>
+        <hr>
+        <a href="#">링크</a>
+        <p class="serve1">문단텍스트</p> <!-- 같은 p 중 serve1 클래스가 있는 p -->
+        <p>문단텍스트</p>
+        <p>문단텍스트</p>
+        <p>문단텍스트</p>
+        <p>문단텍스트</p>
+    </div>
+    <div class="d3">
+        <ul>
+            <li>목록 1</li>
+            <li>목록 2</li>
+            <li>목록 3</li>
+        </ul>
+        <input type="text" placeholder="텍스트 입력">
+        <button>버튼</button>
+        <label for="checkbox">체크박스 :</label>
+        <input type="date" id="checkbox" required>동의합니다
+    </div>
+</body>
+</html>

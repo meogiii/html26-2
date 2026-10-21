@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>1008실습_김대기</title>
+</head>
+<style>
+    table {border-collapse: collapse;} th, td {border: 1px solid black;}
+</style>
+<body>
+    <h1>무지개산악회 회원 모집*</h1>
+    <p><small>* 연회비는 현장 카드 결제가 불가하며, 계좌 이체만 가능합니다.</small></p>
+    
+    <div>
+    <a href="">일정</a>
+    <a href="">후기</a>        
+    <a href="">소개</a>
+    <a href="">가입하기</a>
+    </div>
+
+    <h3>공지사항</h3>
+    <p><mark>이번 주 정기 산행은 우천으로 다음 주로 연기됩니다.</mark></p>
+        
+    <h5>우천 시 대체 일정</h5>
+    <p>같은 주 일요일 오전 10시로 자동 연기되며, 별도 공지는 없습니다.</p><hr>
+
+
+    <h2>이달의 산행 일정</h2>
+    <table>
+        <thead>
+            <tr>
+                <th rowspan="2">주차</th>
+                <th colspan="2">토요일</th>
+                 <th colspan="2">일요일</th>
+            </tr>
+            <tr>
+                <th>코스</th>
+                <th>난이도</th>
+                <th>코스</th>
+                <th>난이도</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1주차</td>
+                <td>둘레길</td>
+                <td>하</td>
+                <td>정상코스</td>
+                <td>상</td>
+            </tr>
+            <tr>
+                <td>2주차</td>
+                <td colspan="4">우천으로 전체 휴무</td>
+            </tr>
+            <tr>
+                <td rowspan="2">3주차</td>
+                 <td>계곡코스</td>
+                 <td>중</td>
+                 <td rowspan="2"colspan="2">전체 캠핑 프로그램 (1박 2일)</td>
+             </tr>
+             <tr>
+                <td>야간산행</td>
+                <td>상</td>
+             </tr>
+        </tbody>
+    </table>
+
+    <h2>산행 후기</h2>
+    <h3>10월 정기총회 안내</h3>
+    <p>다음 달 정기총회는 10월 12일 토요일 저녁 7시, 본부 사무실에서 진행됩니다.</p>
+        
+    <h3>가을 산행 준비 체크리스트</h3>
+    <p>요즘같이 일교차가 큰 날씨엔 아래 장비를 꼭 챙겨주세요.</p>
+
+    <ul>
+    <li>
+        필수 장비
+        <ol>
+        <li>등산화</li>
+        <li>스틱</li>
+     </ol>
+    </li>
+    <li>
+        선택 장비
+        <ul>
+        <li>아이젠</li>
+        <li>핫팩</li>
+        </ul>
+    </li>
+    </ul>
+
+     <h2>동호회 소개</h2>
+    <b>무지개산악회</b>는 매주 토요일과 일요일, 서울 근교 산을 함께 오르는 <em>등산 동호회</em>입니다.<br>
+    2016년에 시작해서 지금은 회원 120명이 함께하고 있습니다.
+    <p>가입비는 원래 <del>30,000원</del>이었지만, 이번 달 신규 회원은 <ins>20,000원</ins>에 가입하실 수 있습니다. 10명 한정이니 서둘러주세요.</p>
+    <p>준비물 중 물(H<sub>2</sub>O)은 계절과 상관없이 <b>필수 지참</b>입니다. <small>(현장 구매도 가능하지만 가격이 비쌉니다)</small></p>
+    
+    <p>▲ 지난달 북한산 정기 산행</p>
+        
+    <h3>용어 정리</h3>
+    <dl>
+        <dt>정기모임</dt>
+        <dd>매주 토·일요일에 진행되는 공식 산행</dd>
+        <dt>번개모임</dt>
+        <dd>회원들이 즉흥적으로 잡는 비공식 소모임</dd>
+    </dl>
+        
+    <h3>바로가기</h3>
+    <p>공식 카페 바로가기 인스타그램·문의 메일 보내기</p>
+
+        <h2>회원 가입 신청</h2>
+        <form>
+            <fieldset>
+                <legend>기본 정보</legend>
+                
+                <label for="name">이름</label>
+                <input type="text" id="name" value="홍길동"><br>
+                
+                <label for="email">이메일</label>
+                <input type="email" id="email"><br>
+                
+                <label for="password">비밀번호</label>
+                <input type="password" id="password"><br>
+                
+                <label for="phone">전화번호</label>
+                <input type="tel" id="phone" value="010-1234-5678"><br>
+                
+                <label for="age">나이</label>
+                <input type="number" id="age"><br>
+                
+                <label for="birth">생년월일</label>
+                <input type="date" id="birth"><br>
+            </fieldset>
+
+            <fieldset>
+                <legend>추가 정보</legend>
+                
+                <label>참여 희망 요일</label><br>
+                <input type="radio" id="sat" name="day"> <label for="sat">토요일</label>
+                <input type="radio" id="sun" name="day"> <label for="sun">일요일</label><br>
+                
+                <label for="region">거주 지역</label>
+                <select id="region">
+                    <option>선택해주세요</option>
+                </select><br>
+                
+                <label for="profile">프로필 사진</label>
+                <input type="file" id="profile"><br>
+                
+                <label for="memo">각오 한마디</label>
+                <textarea id="memo"></textarea><br>
+                
+                <label for="member_no">회원번호 (자동 발급)</label>
+                <input type="text" id="member_no" placeholder="자동으로 발급됩니다" disabled><br>
+                
+                <label for="ref_code">추천인 코드</label>
+                <input type="text" id="ref_code" value="INVITE-2026"><br>
+                
+                <input type="checkbox" id="agree"> <label for="agree">회칙에 동의합니다</label><br><br>
+                
+                <button type="submit">가입 신청하기</button>
+                <button type="reset">다시 작성</button>
+                <button type="button">취소</button>
+            </fieldset>
+        </form>
+    </section>
+
+    <footer>
+        <h3>관련 링크</h3>
+        <ul>
+            <li>동호회 소개 다시 보기</li>
+            <li>이번 달 일정 다시 보기</li>
+        </ul>
+        <p>© 2026 무지개산악회. All rights reserved.</p>
+    </footer>
+</body>
+</html>

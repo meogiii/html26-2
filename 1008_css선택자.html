@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* p태그 */
+        p {color:blue;} 
+
+        /* 전체 선택자 */
+        * {font-size: 8px;} 
+
+        /* 그룹 선택자 */
+        h1, h2 {background-color: yellow; }
+        #header, .card {background-color: lightgray;}
+        /* 후손 선택자 */
+        ul li {color: aqua;}
+
+        /* 자식 선택자 */
+        ul > li {color: rgba(250, 106, 178, 0.459);}
+
+        /* 인접 선택자 */
+        h2 + p {background-color: rgb(255, 0, 0);}
+
+        /* 형제 선택자 */
+        h2 ~ p {font-family: 궁서;}
+
+
+    </style>
+    <title>1008_css</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>제목이 되는 텍스트</h1>
+    <h2 style="color: red;">소제목이 되는 텍스트</h2>
+    <p id="header">단락으로 내용 작성</p>
+    <p class="card">단락으로 내용 작성</p>
+    <p>단락으로 내용 작성</p>
+    <p>단락으로 내용 작성</p>
+    <p>단락으로 내용 작성</p>
+
+
+
+
+    <ul>
+        <li>대분류 1</li>
+        <li>대분류 2</li>
+        <li>대분류 3</li>
+
+        <ol>
+            <li>중분류 1</li>
+            <li>중분류 2</li>
+            <li>중분류 3</li>
+        </ol>
+    </ul>
+
+
+</body>
+</html>

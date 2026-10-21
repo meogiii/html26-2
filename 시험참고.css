@@ -1,0 +1,286 @@
+@charset "UTF-8";
+/* =====================================================================
+ CSS 실기시험 참고 — 시험참고.html과 같은 폴더에 저장
+ Ctrl+F로 C번호 또는 속성/선택자 이름 검색.
+ [C00] 연결·문법       [C01] 기본 속성·색상
+ [C02] 전체·태그·class·id·그룹
+ [C03] 후손·자식·형제  [C04] hover·구조 가상 클래스 전체
+ [C05] :not            [C06] 속성 선택자 전체
+ [C07] 우선순위·상속·오류 찾기
+ [C08] 표 실전         [C09] 화면 재현용 최소 보충
+ [C10] 사진에서 바로 찾는 처방 / [C11] 참고 페이지 표시용
+
+ 적용되는 예제는 sel- 클래스 안으로 제한했다.
+ 제출 파일에는 필요한 규칙만 복사하고 선택자를 실제 HTML과 맞춘다.
+ HTML 교안 페이지 자체를 장식하는 CSS는 학습 범위로 간주하지 않았다.
+ C09의 여백·크기 등은 실기 보충이며 css-02 전체 내용을 넣은 것이 아니다.
+ ===================================================================== */
+
+/* C00 연결 / 문법
+ HTML head 안: <link rel="stylesheet" href="시험참고.css">
+ 제출 파일이 style.css이면 href도 style.css로 바꾼다.
+ 내부 방식: HTML head 안의 <style> ...CSS... </style>
+ 인라인: <p style="color: red;">글자</p>
+
+ 선택자 { 속성: 값; 속성: 값; }
+ p { color: red; font-size: 16px; }
+      콜론 ↑     세미콜론 ↑
+ CSS 파일에는 HTML 태그를 쓰지 않는다.
+ CSS 주석은 이 설명처럼 슬래시+별표로 시작하고 별표+슬래시로 끝난다.
+ 주석 안에 또 주석을 중첩하지 않는다. // 는 CSS 주석이 아니다.
+ */
+
+/* C01 기본 속성 — 필요한 값으로 바꿔 사용
+ color: red;                  글자색
+ background-color: #fff3cd;    배경색
+ font-size: 16px;              글자 크기 (16 px처럼 띄우지 않음)
+ font-size: 1.2rem;            루트 글자 크기의 1.2배
+ font-weight: bold;           굵게 (normal 또는 400, bold 또는 700)
+ text-align: center;          글자 정렬 left / center / right
+
+ 색상 표기: red = #ff0000 = rgb(255, 0, 0)
+ #000 검정 / #fff 흰색 / #333 진회색 / #f5f5f5 연회색
+ rgba(255, 0, 0, 0.3) = 투명도 0.3인 빨강 (실습에 등장).
+ color와 background-color를 구분한다.
+ background: yellow;도 가능하지만 배경 관련 여러 속성을 초기화하는 단축형.
+ */
+.highlight { background-color: #fff3cd; }
+
+/* C02 기본 선택자
+ *            모든 요소
+ p            모든 p 태그
+ .card        class="card" (여러 요소에 재사용 가능)
+ #title       id="title" (문서에서 중복 금지)
+ span.small   span이면서 class="small" (공백 없음)
+ .card.small  두 클래스를 동시에 가진 요소
+ .card .small card 안의 후손 small 클래스 (공백 있음)
+ h1, h2, p    세 종류 모두 (쉼표 = 그룹)
+
+ [필요할 때 복사]
+ * { margin: 0; padding: 0; }
+ 위 리셋은 기본 제목·문단 여백, 목록 들여쓰기까지 없앤다.
+ 교수님 사진이 기본 HTML 모양이면 리셋하지 않는다.
+ * { font-size: 8px; }도 제목까지 전부 8px이 되므로 주의!
+ */
+.sel-basic p { color: blue; }
+.sel-basic .card { color: green; }
+#priority-demo { color: red; }
+.sel-basic span.small { font-size: 12px; }
+.sel-basic h2, .sel-basic h3 { background-color: lightgray; }
+
+/* C03 관계 선택자 — 오른쪽 대상이 선택된다
+ A B    A 안의 모든 B 후손 (자식·손자 포함)
+ A > B  A의 바로 아래 B 자식만
+ A *    A 안의 모든 종류 후손
+ A + B  A 바로 다음 형제가 B일 때 그 B 하나
+ A ~ B  A 뒤쪽의 B 형제 모두 (중간에 다른 태그 있어도 됨)
+ 형제는 부모가 같아야 한다. +와 ~는 앞쪽 형제를 선택하지 않는다.
+
+ .menu li   = 중첩된 li도 직접 선택
+ .menu > li = 지정 menu의 직계 li만 직접 선택
+ ul > li    = 모든 ul의 직계 li → 안쪽 ul의 li도 선택됨!
+
+ color/font-size 등은 상속될 수 있다.
+ .menu > li { color: red; }면 손자 li도 부모 색을 물려받을 수 있음.
+ 아래 데모는 안쪽 li에 직접 색을 줘 상속을 덮어썼다.
+ border/background-color는 일반적으로 상속되지 않는다.
+ */
+.sel-menu li { font-size: 16px; }                  /* 후손 */
+.sel-menu > li { color: red; }                   /* 직계 자식 */
+.sel-menu > li li { color: black; }              /* 중첩 목록 색 따로 */
+.sel-sibling h3 + p { background-color: #fff3cd; }/* 바로 다음 p */
+.sel-sibling h3 ~ p { color: blue; }              /* 뒤쪽 p 모두 */
+/* 후손 전체 복사 예: .box * { color: blue; } */
+
+/* C04 가상 클래스 — 콜론 : 하나
+ :hover = 마우스를 올린 동안. 정지 사진에는 마우스를 올린 상태일 수 있음.
+ */
+.sel-attrs button:hover { background-color: crimson; color: white; }
+.sel-attrs a:hover { color: orange; }
+
+/* 구조 순서는 각 부모의 요소 자식을 기준으로 매번 다시 센다.
+ 첫째는 1번. 공백 텍스트·줄바꿈·주석은 nth-child 순서에 포함되지 않는다.
+ li:first-child = 전체 형제 중 첫째이면서 li인 요소.
+ '여러 li 중 첫째'가 필요하면 li:first-of-type.
+ */
+.sel-order li:first-child { color: red; }
+.sel-order li:last-child { color: blue; }
+.sel-alone p:only-child { color: teal; }
+.sel-order li:nth-child(2n) { background-color: #eef7ff; }
+.sel-order li:nth-last-child(2) { background-color: #ffe0e6; }
+
+/* nth-child 공식 치트키 (n=0,1,2,... / 실제 양수 순번만 선택)
+ :nth-child(2)       앞에서 2번째
+ :nth-child(odd)     홀수 = 2n+1 = 1,3,5,...
+ :nth-child(even)    짝수 = 2n = 2,4,6,...
+ :nth-child(3n)      3,6,9,...
+ :nth-child(n+3)     3번째부터 끝까지
+ :nth-child(-n+3)    처음 3개
+ :nth-last-child(3)  뒤에서 3번째
+ */
+
+/* ★ child vs of-type: HTML H09의 .sel-types 예제
+ 순번(전체)     1      2      3       4       5
+ 태그          h3     p      p       span    p
+ p끼리 순번           1      2               3
+ p:first-child       → 없음 (첫 요소는 h3)
+ p:first-of-type     → 전체 2번 p
+ p:nth-child(2)      → 전체 2번 p (첫 p)
+ p:nth-of-type(2)    → 전체 3번 p (둘째 p)
+ p:last-child       → 전체 5번 p
+ p:last-of-type     → 전체 5번 p
+ p:only-child       → 없음
+ span:only-of-type  → span 하나이므로 선택 (다른 태그 형제 있어도 됨)
+
+ .card:nth-of-type(2)는 'card 클래스 중 둘째'가 아니다!
+ 같은 태그끼리 센 순서가 2번째이고 card 클래스도 있어야 한다.
+ */
+.sel-types p:first-of-type { color: red; }
+.sel-types p:last-of-type { font-weight: bold; }
+.sel-types p:nth-of-type(even) { background-color: #eef7ff; }
+.sel-types span:only-of-type { color: green; }
+
+/* :empty = 내용이 빈 요소
+ <li></li>             선택됨
+ <li> </li>            공백 텍스트가 있어 선택 안 됨
+ <li><span></span></li> 자식 요소가 있어 선택 안 됨
+ 주석만 있는 경우는 비어있는 것으로 취급.
+ 빈 칸은 높이가 0이면 배경색이 안 보일 수 있어 min-height 보충.
+ */
+.sel-order li:empty { background-color: pink; min-height: 22px; }
+
+/* C05 부정 :not(선택자) — 조건을 제외
+ p:not(.highlight)   highlight 클래스가 없는 p
+ li:not(:first-child) 첫째를 제외한 li
+ .box :not(.skip)    box 안에서 skip이 아닌 모든 후손 (범위 넓음)
+ */
+.sel-order li:not(.excluded) { font-weight: bold; }
+
+/* C06 속성 선택자 — 대괄호 []
+ [for]              for 속성이 존재
+ input[required]    required 속성이 있는 input
+ [type="email"]     속성값이 정확히 email
+ [href^="https"]    https로 시작 (^ 시작)
+ [href$=".pdf"]     .pdf로 끝남 ($ 끝)
+ [class*="btn"]     btn 문자열 포함 (* 포함)
+ .btn과 [class*="btn"]은 다름: 후자는 my-btn-outline도 선택.
+ */
+.sel-attrs label[for] { font-weight: bold; }
+.sel-attrs input[required] { border: 1px solid red; }
+.sel-attrs input[type="email"] { background-color: #eef7ff; }
+.sel-attrs a[href^="https"] { text-decoration: none; }
+.sel-attrs a[href$=".pdf"] { color: red; }
+.sel-attrs [class*="btn"] { font-weight: bold; }
+/* 다른 응용: img[src$=".png"] { border: 1px solid blue; } */
+
+/* C07 우선순위 / 상속 / 안 바뀔 때
+ 수업에서 다루는 일반 작성자 CSS, 같은 중요도·레이어 기준:
+ !important 선언 > 일반 인라인 style > ID > class·속성·가상클래스 > 태그
+ * 및 공백·>·+·~ 자체는 우선순위 점수를 올리지 않는다.
+ 같은 조건·우선순위면 나중에 작성한 선언이 이긴다.
+ 외부 CSS라고 무조건 내부 CSS보다 약한 것이 아니다. 선택자와 선언 순서 비교.
+
+ 정밀 비교: (ID 수, class/속성/가상클래스 수, 태그 수)를 왼쪽부터 비교.
+ #title       = (1,0,0)
+ .box p       = (0,1,1)
+ p.highlight  = (0,1,1)
+ .box .item   = (0,2,0) → 위 두 선택자보다 강함
+ 단순히 'class가 하나라도 있으면 모두 동점'이 아니다.
+ :not() 자체는 추가 점수 없이 괄호 안 선택자의 우선순위를 사용.
+ !important끼리 충돌해도 우선순위·작성 순서 등을 비교하므로 만능은 아니다.
+
+ [상속] 부모 #parent { color: red; }여도 자식 p { color: blue; }가 있으면
+ 자식은 직접 지정한 blue. 부모 ID 점수와 자식 태그 점수를 대결시키지 않는다.
+
+ [오류 확인 순서]
+ 1 HTML/CSS 둘 다 Ctrl+S → 실제 열어둔 파일 맞는지 확인.
+ 2 link href 경로/확장자, rel="stylesheet", CSS 위치 확인.
+ 3 .class / #id 구분, 대소문자, class 이름, 띄어쓰기·쉼표 확인.
+ 4 콜론 : / 세미콜론 ; / 중괄호 } / 닫히지 않은 주석 확인.
+ 5 CSS 아래쪽 동일 선택자, 인라인 style, ID 규칙 확인.
+ 6 부모에게 상속받는지, 다른 규칙이 직접 적용되는지 확인.
+ 7 nth-child는 다른 태그 형제도 세는지, tbody가 부모인지 확인.
+ */
+
+/* C08 표 — HTML의 class="exam-table"과 연결
+ border-collapse: collapse = 셀 테두리 겹쳐 한 줄로.
+ th 기본은 굵게·가운데 / td 기본은 보통 굵기·왼쪽 정렬.
+ 사진이 기본 표면 padding·width·배경을 불필요하게 추가하지 말 것.
+ */
+.exam-table { border-collapse: collapse; }
+.exam-table th, .exam-table td { border: 1px solid black; }
+/* 필요할 때 복사:
+ .exam-table th, .exam-table td { padding: 6px 10px; }
+ .exam-table { width: 600px; }
+ .exam-table td { text-align: center; }
+ .exam-table th { background-color: lightgray; }
+ .exam-table tbody > tr:nth-child(even) { background-color: #f5f5f5; }
+
+ 주의: tbody의 첫 행부터 따로 센다. 머리글까지 포함한 화면 순서와 다를 수 있다.
+ tbody에 4행이면 nth-child(even)은 그중 2·4행.
+ 병합된 셀은 실제 td가 줄어 nth-child가 화면의 열 번호와 달라질 수 있다.
+ table > tr은 브라우저가 tbody를 자동 삽입하면 안 맞을 수 있다.
+ */
+
+/* C09 실기 보충 — 사진 크기·간격 맞추기에만 선택 사용 (교안 범위 외 보충)
+ [복사해서 필요한 규칙만 사용]
+ .photo { width: 200px; height: auto; }    이미지 가로만 바꾸고 비율 유지
+ .text { font-family: "Malgun Gothic", sans-serif; }
+ .text { font-style: italic; }          기울임
+ .text { text-decoration: underline; } 밑줄 (none 제거, line-through 취소선)
+ .text { line-height: 1.6; }            줄 높이, 단위 없는 1.6은 글자 크기 배수
+ .box { width: 500px; padding: 16px; border: 1px solid black; margin: 20px; }
+
+ padding = 테두리 안쪽 여백 / margin = 바깥 여백 / border = 테두리.
+ margin: 10px;               네 방향 모두
+ margin: 10px 20px;          위아래 10, 좌우 20
+ margin: 10px 20px 30px;     위 10, 좌우 20, 아래 30
+ margin: 10px 20px 30px 40px; 위 오른쪽 아래 왼쪽 (시계 방향)
+ margin-top: 20px;           위만
+ .box { width: 500px; margin: 0 auto; } 가로 가운데 박스
+ text-align: center;는 안의 글자 정렬. 박스 자체 가운데 배치는 아님.
+ 기본 content-box: 전체 폭 = width + 좌우 padding + 좌우 border.
+ .box { box-sizing: border-box; }면 width에 padding/border 포함.
+ 인접한 블록의 위아래 margin은 겹칠 수 있어 단순 합과 다를 수 있음.
+ .form-row > label { display: inline-block; width: 100px; } 이름표 폭 맞추기
+ inline span에는 width/height가 기대대로 적용되지 않으므로 필요시 inline-block.
+ fieldset { margin-bottom: 12px; } 그룹 사이 간격.
+ textarea { width: 350px; height: 100px; } 지정하면 rows/cols보다 CSS 크기가 우선.
+ input 전체에 큰 width를 주면 checkbox/radio까지 커질 수 있음:
+ input[type="text"], input[type="email"] { width: 200px; }처럼 범위를 좁힌다.
+ */
+
+/* C10 사진 → 코드 빠른 대응
+ 노란 형광펜      HTML mark / 원하는 다른 색은 background-color
+ 글자 굵게        strong 또는 b / CSS font-weight: bold
+ 취소 가격        del / text-decoration: line-through
+ 할인 가격 밑줄   ins / text-decoration: underline
+ 작고 위에 별표   sup / 작고 아래 숫자 sub
+ 점·숫자 목록     ul·ol > li / 들여쓴 설명은 dl > dt, dd
+ 표 칸 합침       td/th의 colspan(가로), rowspan(세로)
+ 테두리 속 제목   fieldset > legend
+ 원형 선택        input type="radio" / 네모 선택 checkbox
+ 흐린 안내 글자   placeholder / 실제 채워진 값 value
+ 드롭다운 기본값  option selected / 입력 기본 체크 checked
+ 선택자 하나만    class 부여 후 .class / id 부여 후 #id
+ 마우스 반응      :hover
+ 짝수 행 배경     tbody > tr:nth-child(even)
+
+ [짧은 실전 스타일 묶음 — 필요할 때 복사]
+ #title { text-align: center; }
+ .highlight { background-color: skyblue; }
+ .content p { color: #555; }
+ .content h1 + p { margin-top: 20px; }
+ .content ul li { font-size: 15px; }
+ .content a[href^="https"] { text-decoration: none; }
+ .content a:hover { color: crimson; }
+ */
+
+/* C11 이 참고 페이지를 읽기 위한 표시용 — 제출 파일에는 복사 불필요.
+ 제목·문단·폼 예제의 기본 생김새를 최대한 유지한다.
+ */
+body { color: #222; background-color: white; }
+.ref-panel { background-color: #f4f7fb; border: 1px solid #cbd5e1; padding: 12px 18px; margin: 20px 0; }
+.ref-panel p, .ref-panel li { line-height: 1.7; }
+.ref-panel table th, .ref-panel table td { padding: 6px; text-align: left; }
+body > div { margin-bottom: 32px; }

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML 실기시험 빠른 참고 · 김대기</title>
+    <link rel="stylesheet" href="시험참고.css">
+    <!-- H00 기본 구조: ! 입력 → Tab. title은 탭 제목, h1은 화면 제목.
+         head = 문서 정보 / body = 화면 내용 / UTF-8 = 한글 인코딩.
+         외부 CSS: 위 link. 내부 CSS: head 안에 <style>p { color: red; }</style>
+         인라인 CSS: <p style="color: red;">내용</p>
+         .css 파일 안에는 style 태그를 쓰지 않는다. -->
+</head>
+<body>
+<!-- =====================================================================
+ [사용법] HTML 1개 + CSS 1개를 같은 폴더에 둔다.
+ VS Code에서 두 파일을 열고 Ctrl+F로 H번호/C번호/키워드를 검색한다.
+ 브라우저에서는 이 HTML을 열어 목차 클릭 → 실제 모양 확인.
+ 제출용 새 HTML에 기본 구조를 만들고 필요한 예제만 복사한다.
+ CSS는 필요한 규칙만 복사하고 예제 클래스명을 제출 HTML과 맞춘다.
+ 원본 교안 5개: html-01 / html-02 / html-03-update / 1001_form / css-01.
+ 시맨틱 레이아웃 태그 단원 제외. css-02는 요청 범위 밖이므로 미포함.
+ CSS의 C09는 화면 재현용 최소 보충이며 교안 필수 범위와 구분했다.
+
+ [빠른 찾기]
+ H00 기본 구조·CSS 연결       H01 사진 보고 만드는 순서·VS Code
+ H02 제목·문단·글자 꾸미기    H03 목록·중첩·설명 목록
+ H04 링크·이미지·파일 경로    H05 표 기본·가로세로 복합 병합
+ H06 로그인·검색             H07 회원가입·모든 input·select·textarea
+ H08 폼 속성·정규식·표기법   H09 선택자 연습용 HTML
+ H10 내 실습에서 발견한 실수 H11 제출 직전 점검
+ CSS 목차: C00 연결 / C01 속성 / C02 기본 / C03 관계 / C04 구조
+           C05 부정 / C06 속성 / C07 우선순위 / C08 표 / C09 보충
+ ===================================================================== -->
+<div class="ref-panel" id="top">
+    <h1>HTML · CSS 실기시험 빠른 참고</h1>
+    <p><strong>VS Code: Ctrl+F → H05(표), H07(폼), C04(가상 클래스)</strong><br>
+    코드 주석에 설명이 있습니다. 필요한 예제와 CSS만 제출 파일에 복사하세요.</p>
+    <p>
+        <a href="#h01">H01 작업 순서</a> · <a href="#h02">H02 글자</a> ·
+        <a href="#h03">H03 목록</a> · <a href="#h04">H04 링크/이미지</a> ·
+        <a href="#h05">H05 표 병합</a> · <a href="#h06">H06 로그인</a> ·
+        <a href="#h07">H07 회원가입</a> · <a href="#h08">H08 속성</a> ·
+        <a href="#h09">H09 선택자</a> · <a href="#h10">H10 실수</a> ·
+        <a href="#h11">H11 제출 점검</a>
+    </p>
+    <p>범위: 지정한 교안 5개. 시맨틱 레이아웃 단원 제외.<br>
+    아래는 실행되는 예제 모음입니다. CSS 선택자 전체 설명은 <strong>시험참고.css</strong>를 여세요.</p>
+</div>
+
+<!-- H01 사진 보고 구현하기 / VS Code -->
+<div class="ref-panel" id="h01">
+    <h2>H01 사진 → 코드: 이 순서로 구현</h2>
+    <ol>
+        <li>제목, 문단, 목록, 표, 폼 순서를 먼저 적는다. 글자 내용과 줄바꿈을 맞춘다.</li>
+        <li>큰 제목=h1~h6, 문단=p, 문단 안 줄바꿈=br, 구분선=hr.</li>
+        <li>표는 병합 전 전체 열 수부터 세고 각 행의 칸을 작성한다. H05 참고.</li>
+        <li>폼은 입력 종류·기본값·선택 상태·그룹 테두리를 구분한다. H07 참고.</li>
+        <li>구조 완성 후 색·굵기·정렬·크기를 맞춘다. 기본 화면이면 전체 여백 초기화를 하지 않는다.</li>
+        <li>저장하고 브라우저에서 비교한다. 전체 위치 → 표 → 폼 → 작은 글자 순으로 수정.</li>
+    </ol>
+    <p>작업 폴더 열기 → 새 파일(지정된 제출명.html) → ! + Tab → lang="ko" → 저장.<br>
+    Ctrl+S 저장 / Ctrl+F 검색 / Ctrl+H 바꾸기 / Shift+Alt+F 문서 서식 정리.<br>
+    HTML 우클릭 → Open with Live Server(설치되어 있을 때). 저장 후 화면 확인.<br>
+    Ctrl+W는 현재 탭 닫기. 끝내기 전 저장. 파일 이름은 시험 지시를 우선한다.</p>
+</div>
+
+<!-- H02 제목 / 문단 / 인라인 / div / span
+ h1이 가장 큰 기본 제목, h6이 가장 작다. 기본 크기는 CSS로 바꿀 수 있다.
+ p 안에 h1~h6, div, table, ul을 넣지 않는다. 각각 형제로 배치한다.
+ div = 블록 그룹, span = 문장 일부. span 자체에는 색/굵기 변화 없음.
+ HTML 소스의 Enter·여러 공백은 일반 화면에서 하나의 공백처럼 처리된다.
+ br, hr, img, input, meta, link에는 닫는 태그가 없다.
+ HTML 주석은 화면에 안 보인다. CSS 주석은 CSS 파일 참고. -->
+<div id="h02">
+    <h2>H02 제목·문단·글자 꾸미기</h2>
+    <h1>가장 큰 제목 h1</h1>
+    <h2>제목 h2</h2><h3>제목 h3</h3><h4>제목 h4</h4><h5>제목 h5</h5><h6>제목 h6</h6>
+    <p>첫 문단입니다.<br>같은 문단에서 줄을 바꿉니다.</p>
+    <p>두 번째 문단은 기본적으로 위아래 여백이 생깁니다.</p>
+    <hr>
+    <p><strong>중요·굵게</strong> / <b>굵게</b> / <em>강조·기울임</em> / <i>기울임</i></p>
+    <p><mark>노란 강조</mark> / <del>30,000원</del> → <ins>20,000원</ins></p>
+    <p>물 H<sub>2</sub>O / 제곱 x<sup>2</sup> / 제목<sup>*</sup> / <small>작은 보충 설명</small></p>
+    <p>여기서 <span class="highlight">일부 글자만</span> 배경색을 바꿉니다.</p>
+    <p>특수문자: &lt;태그&gt; / &amp; / &copy; / A&nbsp;B</p>
+    <!-- < 는 &lt; / > 는 &gt; / & 는 &amp; / 저작권 &copy;
+         &nbsp;는 줄바꿈되지 않는 공백. 화면 정렬을 공백 수십 개로 맞추지 말 것. -->
+</div>
+
+<!-- H03 ul / ol / li / dl / dt / dd / 중첩 목록
+ ul = 점 목록, ol = 번호 목록, li = 각 항목.
+ 중첩 ul/ol은 상위 li의 닫는 태그보다 먼저 넣는다.
+ dl 안에는 용어 dt, 설명 dd. dd에는 기본 들여쓰기가 있다. -->
+<div id="h03">
+    <h2>H03 목록</h2>
+    <ul><li>아메리카노</li><li>카페라떼</li><li>자몽에이드</li></ul>
+    <ol><li>메뉴 선택</li><li>결제</li><li>픽업</li></ol>
+    <ul>
+        <li>필수 장비
+            <ol><li>등산화</li><li>스틱</li></ol>
+        </li>
+        <li>선택 장비
+            <ul><li>아이젠</li><li>핫팩</li></ul>
+        </li>
+    </ul>
+    <dl>
+        <dt>HTML</dt><dd>웹페이지 구조</dd>
+        <dt>CSS</dt><dd>웹페이지 꾸미기</dd><dd>색상과 크기 등 지정</dd>
+    </dl>
+</div>
+
+<!-- H04 a / img / href / src / alt / 경로
+ 링크 = href, 이미지 = src. 새 탭 = target="_blank" (밑줄 포함).
+ 같은 폴더: photo.jpg / 하위: images/photo.jpg / 상위: ../images/photo.jpg
+ 웹주소: https://example.com/photo.jpg. 제출은 제공된 로컬 이미지 상대경로 권장.
+ 파일명·확장자(.jpg/.png)·대소문자까지 확인. 경로에는 / 사용.
+ HTML width="200"처럼 숫자. CSS width: 200px;처럼 단위.
+ alt는 이미지 설명이지 사진 밑에 항상 나오는 캡션이 아니다.
+ 아래 이미지 예제는 파일 없는 깨진 그림을 피하려고 주석 처리. 실제 파일로 바꿔 사용. -->
+<div id="h04">
+    <h2>H04 링크·이미지</h2>
+    <p><a href="https://www.example.com" target="_blank" rel="noopener">외부 사이트 새 탭</a> ·
+       <a href="#h05">같은 페이지의 표로 이동</a> ·
+       <a href="mailto:student@example.com">메일 보내기</a></p>
+    <!-- <a href="other.html">다른 HTML 파일</a> -->
+    <!--
+    <img src="images/photo.jpg" alt="산행 단체 사진" width="200">
+    <p>▲ 지난달 산행 사진</p>
+    <a href="https://www.example.com" target="_blank">
+        <img src="images/photo.jpg" alt="이미지 링크" width="200">
+    </a>
+    -->
+    <p>이미지 코드는 이 부분의 소스 주석에서 복사하세요. href="#h05" ↔ id="h05"처럼 연결합니다.</p>
+</div>
+
+<!-- H05 table / thead / tbody / tr / th / td / colspan / rowspan
+ table > thead 또는 tbody > tr > th 또는 td.
+ tr = 가로 한 행. th = 제목 칸(기본 굵게·가운데), td = 데이터 칸.
+ 표 테두리는 CSS C08. table에만 border를 주면 칸별 선은 생기지 않는다.
+ colspan="3" = 오른쪽 포함 총 3열 차지(추가 3칸 아님).
+ rowspan="2" = 현재 행 포함 총 2행 차지.
+ 병합된 자리에는 빈 td도 쓰지 않는다. 그대로 생략한다.
+ 매 행: 현재 셀들의 colspan 합 + 윗행에서 내려온 칸 수 = 전체 열 수.
+ rowspan은 thead와 tbody 경계를 넘어 병합하지 않는다.
+ span 태그는 글자 그룹이며 표 병합과 관계없다. -->
+<div id="h05">
+    <h2>H05 표: 기본 → 가로·세로 → 복합 병합</h2>
+    <table class="exam-table">
+        <thead><tr><th>이름</th><th>나이</th><th>지역</th></tr></thead>
+        <tbody><tr><td>김대기</td><td>23</td><td>서울</td></tr></tbody>
+    </table>
+    <h3>4열 시간표</h3>
+    <table class="exam-table">
+        <tbody>
+            <tr><th></th><th>월</th><th>화</th><th>수</th></tr>
+            <tr><th>1교시</th><td>HTML</td><td>CSS</td><td>실습</td></tr>
+            <tr><th>점심</th><td colspan="3">12:00~13:00</td></tr>
+            <tr><th rowspan="2">저녁</th><td>합주</td><td>곡 작업</td><td>리허설</td></tr>
+            <tr><td colspan="3">자유 연습</td></tr>
+        </tbody>
+    </table>
+    <h3>5열 복합 병합 — 실습 산악회 형태</h3>
+    <table class="exam-table">
+        <thead>
+            <tr><th rowspan="2">주차</th><th colspan="2">토요일</th><th colspan="2">일요일</th></tr>
+            <!-- 1열은 위의 '주차'가 점유하므로 아래는 4칸만 -->
+            <tr><th>코스</th><th>난이도</th><th>코스</th><th>난이도</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>1주차</td><td>둘레길</td><td>하</td><td>정상코스</td><td>상</td></tr>
+            <tr><td>2주차</td><td colspan="4">우천으로 전체 휴무</td></tr>
+            <tr>
+                <td rowspan="2">3주차</td><td>계곡코스</td><td>중</td>
+                <td rowspan="2" colspan="2">전체 캠핑 (1박 2일)</td>
+            </tr>
+            <!-- 위에서 1열+2열을 점유 → 이 행은 남은 가운데 2칸만 작성 -->
+            <tr><td>야간산행</td><td>상</td></tr>
+        </tbody>
+    </table>
+    <p>마지막 행 계산: 위에서 내려온 3칸 + 새로 쓴 2칸 = 전체 5칸.</p>
+</div>
+
+<!-- H06 form / action / method / 로그인 / 검색
+ action = 전송 목적지. 여기서는 빈 값으로 현재 문서. 실제 처리 서버는 없음.
+ method="get" = URL ?key=value, 검색·조회 / post = 요청 본문, 로그인·가입.
+ post 자체가 암호화는 아니다. password는 화면 글자를 가리는 것.
+ form 안에 form을 중첩하지 않는다. 입력들은 form 안에 둔다.
+ 브라우저 참고 파일의 제출은 실제 로그인/가입 처리를 하지 않는다. -->
+<div id="h06">
+    <h2>H06 로그인·검색</h2>
+    <form action="" method="post">
+        <p><label for="login-id">ID</label> <input type="text" id="login-id" name="userId" placeholder="아이디" required></p>
+        <p><label for="login-pw">PW</label> <input type="password" id="login-pw" name="userPw" placeholder="비밀번호" required></p>
+        <p><label><input type="checkbox" name="keepLogin" value="yes"> 로그인 상태 유지</label></p>
+        <input type="submit" value="로그인">
+    </form>
+    <form action="" method="get">
+        <p><label for="search-word">검색</label>
+        <input type="search" id="search-word" name="q" placeholder="검색어">
+        <button type="submit">검색</button></p>
+    </form>
+</div>
+
+<!-- H07 종합 회원가입: input 종류 / label / textarea / select / fieldset
+ id = 문서에서 유일한 식별자 / name = 전송 항목명 / value = 기본값 또는 전송값.
+ label for와 input id를 정확히 일치시키거나, label 안에 input을 넣는다.
+ radio는 같은 name으로 그룹 묶기, 서로 다른 value. checkbox는 복수 선택.
+ checked = radio/checkbox 기본 선택 / selected = option 기본 선택.
+ 선택되지 않은 radio/checkbox는 제출되지 않음. value 생략 시 보통 on.
+ checkbox에 같은 name 사용 가능. hobby[]는 서버 측 배열 처리 관례이지 필수 문법 아님.
+ 파일 업로드 = method="post" + enctype="multipart/form-data" + input name.
+ textarea 초기값은 태그 사이에 쓴다. value 속성을 쓰지 않는다.
+ rows=줄 수 / cols=문자 폭 기준. 픽셀 크기가 아님.
+ button은 폼 안에서 기본 submit → type 명시. reset은 빈칸이 아닌 초기값으로 복원.
+ type="button" 취소 버튼은 JavaScript 없으면 취소/이동 동작이 없다. -->
+<div id="h07">
+    <h2>H07 회원가입 종합 예제</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+        <fieldset>
+            <legend>기본 정보</legend>
+            <p><label for="join-name">이름:</label> <input type="text" id="join-name" name="userName" value="홍길동" required></p>
+            <p><label for="join-email">이메일:</label> <input type="email" id="join-email" name="userEmail" placeholder="name@example.com" required></p>
+            <p><label for="join-pw">비밀번호:</label> <input type="password" id="join-pw" name="userPw" maxlength="12" placeholder="최대 12자" required></p>
+            <p><label for="join-tel">전화번호:</label> <input type="tel" id="join-tel" name="userTel" placeholder="010-1234-5678" pattern="01[0-9]-[0-9]{3,4}-[0-9]{4}" title="010-1234-5678 형식" required></p>
+            <p><label for="join-age">나이:</label> <input type="number" id="join-age" name="userAge"></p>
+            <p><label for="join-birth">생년월일:</label> <input type="date" id="join-birth" name="userBirth" value="2003-01-01"></p>
+            <p><label for="join-zip">우편번호:</label> <input type="text" id="join-zip" name="zipCode" pattern="[0-9]{5}" maxlength="5" placeholder="숫자 5자리" title="숫자 다섯 자리"></p>
+        </fieldset>
+        <fieldset>
+            <legend>추가 정보</legend>
+            <p>희망 요일:
+                <input type="radio" id="day-sat" name="day" value="sat" checked required><label for="day-sat">토요일</label>
+                <input type="radio" id="day-sun" name="day" value="sun"><label for="day-sun">일요일</label>
+            </p>
+            <p>취미:
+                <label><input type="checkbox" name="hobby" value="health" checked> 헬스</label>
+                <label><input type="checkbox" name="hobby" value="music"> 음악</label>
+                <label><input type="checkbox" name="hobby" value="movie"> 영화</label>
+            </p>
+            <p><label for="join-region">거주 지역:</label>
+                <select id="join-region" name="region" required>
+                    <option value="" disabled selected>선택해주세요</option>
+                    <option value="seoul">서울</option>
+                    <option value="busan">부산</option>
+                    <option value="gyeonggi">경기</option>
+                </select>
+            </p>
+            <p><label for="join-file">프로필 사진:</label> <input type="file" id="join-file" name="profileImage"></p>
+            <p><label for="join-intro">자기소개:</label><br>
+                <textarea id="join-intro" name="intro" rows="4" cols="50" maxlength="100" placeholder="100자 이내"></textarea>
+            </p>
+            <p><label for="join-number">회원번호:</label> <input type="text" id="join-number" name="memberNumber" value="202330302" readonly></p>
+            <p><label for="join-code">추천인 코드:</label> <input type="text" id="join-code" name="inviteCode" value="INVITE-2026" disabled></p>
+            <p><label><input type="checkbox" name="agree" value="yes" required> 약관에 동의합니다</label></p>
+        </fieldset>
+        <p><button type="submit">가입 신청하기</button> <button type="reset">다시 작성</button> <button type="button">취소</button></p>
+        <!-- 같은 기능의 input 버튼: value가 화면의 버튼 글자 -->
+        <p><input type="submit" value="가입 신청"> <input type="reset" value="초기화"> <input type="button" value="일반 버튼"></p>
+    </form>
+</div>
+
+<!-- H08 폼 속성 / pattern / 표기법 -->
+<div class="ref-panel" id="h08">
+    <h2>H08 폼에서 헷갈리는 것</h2>
+    <table class="exam-table">
+        <thead><tr><th>속성</th><th>뜻·주의</th></tr></thead>
+        <tbody>
+            <tr><td>value / placeholder</td><td>value는 실제 초기값. placeholder는 빈칸일 때만 보이는 안내이며 제출값이 아니다.</td></tr>
+            <tr><td>required</td><td>필수 입력. radio는 그룹 중 하나, checkbox는 해당 항목을 반드시 체크.</td></tr>
+            <tr><td>maxlength</td><td>최대 글자 수. 최소 글자 수가 아니다. number의 수치 상한을 정하지 않는다.</td></tr>
+            <tr><td>pattern</td><td>입력값 전체 형식 검사. 빈 값도 막으려면 required 추가. tel 자체는 전화번호 형식을 검사하지 않는다.</td></tr>
+            <tr><td>readonly</td><td>수정 불가, 포커스·복사 가능, name이 있으면 전송. 주로 텍스트 입력에 사용. select/checkbox에는 적용되지 않는다.</td></tr>
+            <tr><td>disabled</td><td>비활성화, 제출 제외, required 검사 제외.</td></tr>
+            <tr><td>checked / selected</td><td>체크박스·라디오는 checked, option은 selected.</td></tr>
+            <tr><td>불리언 속성</td><td>required="false"도 속성이 존재해서 참이다. 해제하려면 속성 자체 삭제.</td></tr>
+            <tr><td>title</td><td>보조 설명. 마우스를 올려도 보일 수 있고, 검사 오류 표시 방식은 브라우저에 따라 다르다.</td></tr>
+        </tbody>
+    </table>
+    <p>정규식: [0-9] 숫자 한 글자 / [a-z] 소문자 한 글자 / {5} 정확히 5번 / {3,4} 3~4번 / + 1번 이상 / | 또는.<br>
+    예: [0-9]{5} → 12345 통과, 1234 실패. pattern 속성에 /정규식/처럼 슬래시를 감싸지 않습니다.</p>
+    <p>표기법: userEmail(카멜) / UserEmail(파스칼) / user-email(케밥) / user_email(스네이크).<br>
+    name은 camelCase, id·class는 kebab-case로 쓰면 편하지만 강제 규칙은 아닙니다.<br>
+    class="card highlight"는 두 클래스입니다. CSS는 .card.highlight로 둘 다 있는 요소를 선택합니다.</p>
+</div>
+
+<!-- H09 CSS 선택자 실습용 HTML. 대응 CSS C02~C07.
+ 선택자 데모는 sel- 접두사로 범위를 제한해 다른 표·폼에 영향을 주지 않음. -->
+<div id="h09">
+    <h2>H09 선택자 결과 확인</h2>
+    <div class="sel-basic"><p id="priority-demo" class="card highlight">우선순위: ID가 이겨 빨간 글자</p><span class="small">span.small 예제</span></div>
+    <ul class="sel-menu">
+        <li>메뉴 1</li><li>메뉴 2<ul><li>하위 메뉴 2-1</li><li>하위 메뉴 2-2</li></ul></li><li>메뉴 3</li>
+    </ul>
+    <div class="sel-sibling"><h3>형제 선택자 기준</h3><p>바로 다음 p</p><div>사이에 다른 요소</div><p>뒤쪽 p</p></div>
+    <ul class="sel-order"><li>1번</li><li>2번</li><li class="excluded">3번 제외 대상</li><li>4번</li><li></li><li>6번</li></ul>
+    <div class="sel-types"><h3>전체 자식 1번 h3</h3><p>전체 2번 / p 1번</p><p>전체 3번 / p 2번</p><span>유일한 span</span><p>전체 5번 / p 3번</p></div>
+    <div class="sel-alone"><p>유일한 자식 p</p></div>
+    <div class="sel-attrs">
+        <p><a href="https://www.example.com">https 시작 링크</a> / <a href="#h05">내부 링크</a></p>
+        <label for="attr-email">이메일:</label> <input type="email" id="attr-email" required>
+        <button type="button" class="btn-demo">마우스를 올려 보세요</button>
+    </div>
+</div>
+
+<div class="ref-panel" id="h10">
+    <h2>H10 내 실습에서 고쳐야 할 부분</h2>
+    <ul>
+        <li>0917실습: p 안에 h1/h3 등을 넣음 → 제목과 p를 나란히 분리. 브라우저가 자동으로 구조를 고쳐 여백이 달라질 수 있음.</li>
+        <li>1001_index: h3로 열고 h5로 닫음 → 같은 태그로 닫기. email id 반복 → 각각 고유하게 만들기.</li>
+        <li>1008_css선택자: ul 바로 아래 ol → ol을 해당 li 안으로 옮기기.</li>
+        <li>1008실습: style은 head 안으로. 열지 않은 닫는 태그는 삭제. href가 비면 목적지로 이동하지 않음.</li>
+        <li>1008실습: 입력·select의 name 누락 → 화면은 나와도 값 전송 안 됨. radio에는 서로 다른 value도 작성.</li>
+        <li>1008실습: 회원번호 placeholder+disabled → 실제 값 표시·전송이 필요하면 value+readonly.</li>
+        <li>123123: 파일을 받는 form → post에 enctype="multipart/form-data" 추가.</li>
+        <li>1015 가상클래스: '동의합니다' 입력이 type="date" → 체크박스면 type="checkbox".</li>
+        <li>이미지 width="200px" → HTML 속성은 width="200". CSS에서는 width: 200px;.</li>
+        <li>0910의 font 태그 대신 span에 CSS font-family, color, font-size 사용.</li>
+    </ul>
+    <p><strong>교안 설명 보정:</strong> 자식 선택자로 부모 li에 color를 주면 손자 li도 상속으로 같은 색이 될 수 있습니다.
+    '직접 선택되지 않음'과 '색이 안 바뀜'은 다릅니다. CSS C03 참고.</p>
+</div>
+
+<div class="ref-panel" id="h11">
+    <h2>H11 제출 직전 30초</h2>
+    <p>① HTML·CSS 모두 저장 ② 제출 파일명·확장자 확인 ③ CSS href 실제 파일명 확인<br>
+    ④ 사진 상대경로·이미지 파일 동봉 ⑤ 표 행별 열 수·병합 확인 ⑥ 입력 type·기본값·선택 상태 확인<br>
+    ⑦ label for=id·중복 id·name 확인 ⑧ 참고용 제목·설명·불필요한 예제 제거<br>
+    ⑨ CSS 별도 제출이 불가하면 필요한 CSS를 head의 style 안에 넣기 ⑩ 최종 제출 파일을 브라우저로 다시 열기</p>
+    <p><a href="#top">맨 위 목차로</a></p>
+</div>
+</body>
+</html>

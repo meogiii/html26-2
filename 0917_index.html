@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>태그연습_0917</title>
+    <!--표 테두리 작성-->
+    <style>
+        table, th, td {
+            border: 1px red solid;
+        }  
+    </style>
+    <!--표 테두리 작성( 테이블, 행, 열 -> 주문 -> 굵기, 색, 선형)-->
+</head>
+<body>
+    <!--주소 삽입-->
+    <a href="이동할 주소">클릭할 글자/이미지</a> <br>
+    <!-- 새창에서 열기 = target="_blank" -->
+    <a href="https://www.google.com/?h1=ko" target="_blank">구글</a><br> 
+    <a href="#">클릭할 글자.이미지</a><br>
+
+    <!--이미지 삽입-->
+    <img src="이미지주소, 링크, 경로, url" alt="로딩글(이미지설명)"> <br>
+    <!--절대경로-->
+    <img src="https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="백호" width="200px"> <br> 
+    <!--상대경로--> 
+    <img src="images/pepsi.jpg" alt="펩시" width="250px"> <br> 
+
+    <!-- 프로필카드 만들기 -->
+     <img src="images/chaewon.jpg" alt="김채원">
+    <h2>김채원</h2>
+    <p>안녕하세요</p>
+    <a href="https://www.instagram.com/_chaechae_1/" target="_blank">인스타그램</a>  
+
+    <!-- 표만들기 -->
+    <table> 
+        <tr>
+            <th>1행1열</th> <!-- 테이블헤더(제목/굵게)-->
+            <th>1행2열</th>
+            <th>1행3열</th>
+        </tr>
+        <tr>
+            <td>2행1열</td> <!-- 테이블데이터(실제데이터)-->
+            <td>2행2열</td>
+            <td>2행3열</td>
+        </tr>
+    </table>
+
+    <!-- colspan -->
+    <table>
+        <tr>
+            <th colspan="2">열 병합</th>
+            <th>22222</th>
+        </tr>
+        <tr>
+            <td>22222</td>
+            <td>22222</td>
+            <td>22222</td>
+        </tr>
+        <tr>
+            <td>22222</td>
+            <td>22222</td>
+            <td>22222</td>
+        </tr>
+    </table>
+
+    <!-- rowspan -->
+     <table>
+        <tr>
+            <th rowspan="2">행 병합</th>
+            <td>11111</td>
+            <td>11111</td>
+        </tr>
+        <tr>
+            <td>11111</td>
+            <td>11111</td>
+        </tr>
+        <tr>
+            <th>11111</th>
+            <td>11111</td>
+            <td>11111</td>
+        </tr>
+     </table>
+
+    
+     <!-- 시간표 만들기 -->
+     <table>
+        <tr>
+            <th><small><sub>교시</sub>\<sup>요일</sup></small></th>
+            <th>월</th>
+            <th>화</th>
+            <th>수</th>
+        </tr>
+        <tr>
+            <th>1교시</th>
+            <td>수학</td>
+            <td>영어</td>
+            <td>과학</td>
+        </tr>
+        <tr>
+            <th>점심시간</th>
+            <td colspan="3">12:00~13:00</td>
+        </tr>
+        <tr>
+            <th>2교시</th>
+            <td rowspan="2">체육</td>
+            <td>도덕</td>
+            <td>국어</td>
+        </tr>
+        <tr>
+            <th>3교시</th>
+            <td>사회</td>
+            <td>한문</td>
+        </tr>
+     </table>
+
+     <!-- 지피티버전 -->
+      <table border="1">
+  <tr>
+    <th></th>
+    <th scope="col">월</th>
+    <th scope="col">화</th>
+    <th scope="col">수</th>
+  </tr>
+  <tr>
+    <th scope="row">1교시</th>
+    <td>수학</td>
+    <td>영어</td>
+    <td>과학</td>
+  </tr>
+  <tr>
+    <th scope="row">점심시간</th>
+    <td colspan="3">12:00~13:00</td>
+  </tr>
+  <tr>
+    <th scope="row">2교시</th>
+    <td>체육</td>
+    <td>도덕</td>
+    <td>국어</td>
+  </tr>
+</table>
+<h2>음료 메뉴</h2>
+<ul>
+    <li>아메리카노</li>
+    <li>카페라떼</li>
+    <li>자몽에이드</li>
+</ul>
+
+<h2>주문 순서</h2>
+<ol>
+    <li>메뉴 선택</li>
+    <li>결제하기</li>
+    <li>픽업대에서 수령</li>
+</ol>
+<table>
+    <tr>
+        <th>세트가격</th>
+        <th>소주</th>
+        <th>맥주</th>
+        <th>양주</th>
+    </tr>
+    <tr>
+        <td>20,000원</td>
+        <td>참이슬</td>
+        <td>카스</td>
+        <td>조니워커</td>
+    </tr>
+    <tr>
+        <td>19,000원</td>
+        <td>처음처럼</td>
+        <td>테라</td>
+        <td>발렌타인</td>
+    </tr>
+</table>
+
+<table>
+  <!-- 1. 머리글 영역 (표의 제목 줄들을 묶음) -->
+  <thead>
+    <tr>
+      <th>이름</th>
+      <th>나이</th>
+      <th>지역</th>
+    </tr>
+  </thead>
+
+  <!-- 2. 본문 영역 (실제 데이터 줄들을 묶음) -->
+  <tbody>
+    <tr>
+      <td>담이</td>
+      <td>30</td>
+      <td>서울</td>
+    </tr>
+    <tr>
+      <td>철수</td>
+      <td>25</td>
+      <td>부산</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
